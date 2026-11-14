@@ -1,0 +1,12 @@
+WICHTELZAUBER 9.2 – Firebase-Projekt verbunden
+
+1. Vorher auf Handy/PC in Einstellungen die JSON-Daten exportieren.
+2. In GitHub Repository wichtelzauber unter Add file > Upload files alle Dateien dieser ZIP hochladen, vorhandene ersetzen, Commit changes.
+3. Warten, bis GitHub Pages aktualisiert wurde. Auf Handy App neu starten.
+4. Einstellungen > Familien-Synchronisierung: Mit E-Mail/Passwort Konto erstellen und anmelden.
+5. Nur auf einem Gerät mit dem gewünschten vollständigen Datenbestand Familie erstellen.
+6. Auf zweitem Gerät mit eigenem Konto anmelden; dessen UID am ersten Gerät als Partner freischalten.
+7. Zweites Gerät mit Familien-ID verbinden.
+
+Vorsicht: Daten anderer Geräte werden beim Beitritt durch Cloud-Version ersetzt. Vorher exportieren.
+Keine App-Änderungen machen, bevor die Synchronisierung geprüft ist.

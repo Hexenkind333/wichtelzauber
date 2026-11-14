@@ -3,7 +3,8 @@
 const CONF='wichtel_firebase_config_v1',FAMILY='wichtel_family_id_v1',PENDING='wichtel_cloud_pending_v1',REV='wichtel_cloud_revision_v1';
 let fb=null,auth=null,db=null,user=null,familyId=localStorage.getItem(FAMILY)||'',unsubscribe=null,rev=Number(localStorage.getItem(REV)||0),busy=false,dirty=localStorage.getItem(PENDING)==='1',timer=null,conflict=false,initializing=false,notice='';
 const $=id=>document.getElementById(id),html=s=>esc(s),setNotice=t=>{notice=t;paint()};
-const config=()=>{try{return JSON.parse(localStorage.getItem(CONF)||'null')}catch{return null}};
+const FIREBASE_CONFIG={apiKey:'AIzaSyDKaZ7BjabU-TZjEevziuv58P23lS4bQM',authDomain:'wichtelzauber-d861a.firebaseapp.com',projectId:'wichtelzauber-d861a',storageBucket:'wichtelzauber-d861a.firebasestorage.app',messagingSenderId:'773391171603',appId:'1:773391171603:web:3d165cd3e27f273253ffe6'};
+const config=()=>{try{return JSON.parse(localStorage.getItem(CONF)||'null')||FIREBASE_CONFIG}catch{return FIREBASE_CONFIG}};
 function loadScript(src){return new Promise((resolve,reject)=>{let s=document.createElement('script');s.src=src;s.onload=resolve;s.onerror=()=>reject(Error('Firebase-Bibliothek konnte nicht geladen werden. Internetverbindung prüfen.'));document.head.appendChild(s)})}
 async function init(){if(initializing||fb)return;let c=config();if(!c)return paint();initializing=true;try{
  await loadScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js');
