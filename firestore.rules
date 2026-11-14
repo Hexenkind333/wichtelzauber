@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  match /families/{familyId} {
+   function signedIn(){return request.auth != null;}
+   function isMember(){return signedIn() && resource.data.members[request.auth.uid] == true;}
+   function isOwner(){return signedIn() && resource.data.ownerUid == request.auth.uid;}
+   allow create: if signedIn() && request.resource.data.ownerUid == request.auth.uid && request.resource.data.members[request.auth.uid] == true;
+   allow read: if isMember();
+   allow update: if isOwner() && request.resource.data.ownerUid == resource.data.ownerUid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['members']);
+   allow delete: if false;
+   match /shared/{docId} {
+    function member(){return request.auth != null && get(/databases/$(database)/documents/families/$(familyId)).data.members[request.auth.uid] == true;}
+    allow read: if member();
+    allow create: if member() && docId == 'planner' && request.resource.data.revision == 1;
+    allow update: if member() && docId == 'planner' && request.resource.data.revision == resource.data.revision + 1 && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['json','revision','modifiedBy','modifiedAt']) && request.resource.data.modifiedBy == request.auth.uid;
+    allow delete: if false;
+   }
+  }
+ }
+}

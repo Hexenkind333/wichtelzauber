@@ -1,0 +1,21 @@
+WICHTELZAUBER 9 – AUTOMATISCHE FAMILIEN-SYNCHRONISIERUNG
+
+WICHTIG: Vorher in Version 8.2 unter Einstellungen > Daten exportieren eine JSON-Sicherung erstellen.
+
+1. Firebase-Projekt unter https://console.firebase.google.com/ erstellen.
+2. Unter Projekteinstellungen eine Web-App hinzufügen. Die Firebase-Konfiguration (firebaseConfig als JSON) kopieren.
+3. Authentication > Sign-in method > E-Mail/Passwort aktivieren.
+4. Firestore Database erstellen. Im Tab Regeln den vollständigen Inhalt der beiliegenden firestore.rules einsetzen und VERÖFFENTLICHEN. Keine offenen Testregeln verwenden.
+5. Authentication > Settings > Authorized domains: die spätere HTTPS-Domain (z. B. benutzername.github.io) hinzufügen.
+6. Alle Web-App-Dateien (index.html, sync.js, sw.js, manifest und Icons) über HTTPS bereitstellen, z. B. GitHub Pages. Direkt per file:// funktioniert die Authentifizierung je nach Browser nicht zuverlässig.
+7. Auf dem PC: Einstellungen > Familien-Synchronisierung. Firebase-Konfiguration als JSON einfügen. Mit E-Mail/Passwort registrieren und „Familie erstellen“. Dabei werden die aktuellen lokalen Daten hochgeladen. Familien-ID notieren.
+8. Auf dem Handy: gleiche Web-App-URL öffnen, dieselbe Firebase-Konfiguration einfügen. Partner meldet sich mit eigener E-Mail/Passwort an und teilt seine angezeigte UID mit.
+9. PC: Gründer gibt die UID des Partners unter „Partner hinzufügen“ ein.
+10. Handy: Partner gibt Familien-ID ein und wählt „Familie verbinden“.
+
+ACHTUNG: Beim ersten Verbinden wird die gemeinsame Cloud-Version übernommen. Vorher ggf. lokale Daten exportieren.
+Jedes Gerät verwendet eine eigene lokale Konfiguration. Cloud-Daten liegen bei Google Firebase.
+Die App speichert den gesamten Plan als ein Dokument; bei gleichzeitigen Änderungen wird ein Konflikt angezeigt. Es gibt keine automatische Zusammenführung. Bei Konflikt vor der Entscheidung Daten exportieren.
+Firestore-Dokumentgröße: maximal 1 MiB, bei vielen Fotos ggf. erreicht. Bilder kleiner halten. Die Cloud-Synchronisierung benötigt Internet; lokale Speicherung bleibt möglich. Bei Verbindungsproblemen und konkurrierenden Änderungen kann eine manuelle Konfliktentscheidung nötig sein.
+Firebase bietet ein Freikontingent, darüber hinaus können Kosten entstehen. Nutzungs- und Abrechnungsbedingungen im Firebase-Projekt prüfen.
+Keine Zugangsdaten oder Passwörter in GitHub-Dateien eintragen. Firebase Web-Konfigurationswerte sind öffentliche Projektkennungen, keine Geheimnisse.
